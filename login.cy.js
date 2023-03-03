@@ -1,0 +1,15 @@
+describe('login', () => {
+  it('login hrm', () => {
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.wait(4000)
+    cy.url().should('include','/web/index.php/auth/login')
+    cy.wait(1000)
+    cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').should('be.visible').should('be.enabled').type('Admin')
+    cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').should('be.visible').should('be.enabled').type('admin123')
+    cy.get('.oxd-button').click()
+    cy.wait(4000)
+    cy.get('.oxd-topbar-header-breadcrumb > .oxd-text').contains('Dashboard')
+    cy.get('.oxd-userdropdown-tab').click()
+    cy.get(':nth-child(4) > .oxd-userdropdown-link').contains('Logout').click()
+  })
+})
